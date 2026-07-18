@@ -1,8 +1,8 @@
 {
-  "name": "仙子伊布收藏图鉴",
+  "name": "仙子伊布收藏状态",
   "short_name": "仙子伊布",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#fff8fb",
-  "theme_color": "#f6a9c7"
+  "theme_color": "#f4a9c6"
 }

@@ -13,15 +13,33 @@
   },
   {
     "era": "XY",
+    "name": "ニンフィア",
+    "number": "015/030",
+    "set": "ニンフィアHalf Deck"
+  },
+  {
+    "era": "XY",
+    "name": "ニンフィア",
+    "number": "030/030",
+    "set": "ニンフィアHalf Deck"
+  },
+  {
+    "era": "XY",
+    "name": "ニンフィア",
+    "number": "067/096",
+    "set": "XY3 ライジングフィスト"
+  },
+  {
+    "era": "XY",
     "name": "ニンフィアEX",
     "number": "025/032",
-    "set": "CP3"
+    "set": "CP3 ポケキュンコレクション"
   },
   {
     "era": "XY",
     "name": "ニンフィアEX",
     "number": "026/032",
-    "set": "CP3"
+    "set": "CP3 ポケキュンコレクション"
   },
   {
     "era": "SM",
@@ -44,8 +62,14 @@
   {
     "era": "SM",
     "name": "ニンフィアGX",
+    "number": "073/114",
+    "set": "SM4+"
+  },
+  {
+    "era": "SM",
+    "name": "ニンフィアGX",
     "number": "323/SM-P",
-    "set": "PROMO"
+    "set": "SM-P PROMO"
   },
   {
     "era": "SM",
@@ -55,9 +79,27 @@
   },
   {
     "era": "SM",
+    "name": "ニンフィア",
+    "number": "061/094",
+    "set": "SM6 禁断の光"
+  },
+  {
+    "era": "SM",
+    "name": "ニンフィア",
+    "number": "064/095",
+    "set": "SM12 オルタージェネシス"
+  },
+  {
+    "era": "SM",
     "name": "サーナイト＆ニンフィアGX",
     "number": "031/055",
-    "set": "SM9a"
+    "set": "SM9a ナイトユニゾン"
+  },
+  {
+    "era": "SM",
+    "name": "サーナイト＆ニンフィアGX",
+    "number": "060/055",
+    "set": "SM9a SR"
   },
   {
     "era": "SM",
@@ -66,10 +108,22 @@
     "set": "SM9a SA"
   },
   {
+    "era": "SM",
+    "name": "サーナイト＆ニンフィアGX",
+    "number": "067/055",
+    "set": "SM9a HR"
+  },
+  {
     "era": "S",
     "name": "ニンフィアV",
     "number": "040/069",
-    "set": "S6a"
+    "set": "S6a イーブイヒーローズ"
+  },
+  {
+    "era": "S",
+    "name": "ニンフィアV",
+    "number": "082/069",
+    "set": "S6a SR"
   },
   {
     "era": "S",
@@ -81,7 +135,13 @@
     "era": "S",
     "name": "ニンフィアVMAX",
     "number": "041/069",
-    "set": "S6a"
+    "set": "S6a イーブイヒーローズ"
+  },
+  {
+    "era": "S",
+    "name": "ニンフィアVMAX",
+    "number": "092/069",
+    "set": "S6a HR"
   },
   {
     "era": "S",
@@ -92,8 +152,20 @@
   {
     "era": "S",
     "name": "ニンフィアV",
+    "number": "074/184",
+    "set": "S8b VMAXクライマックス"
+  },
+  {
+    "era": "S",
+    "name": "ニンフィアV",
     "number": "231/184",
     "set": "S8b CSR"
+  },
+  {
+    "era": "S",
+    "name": "ニンフィアVMAX",
+    "number": "075/184",
+    "set": "S8b VMAXクライマックス"
   },
   {
     "era": "S",
@@ -103,23 +175,51 @@
   },
   {
     "era": "S",
+    "name": "ニンフィアV",
+    "number": "191/414",
+    "set": "スタートデッキ100"
+  },
+  {
+    "era": "S",
+    "name": "ニンフィアVMAX",
+    "number": "192/414",
+    "set": "スタートデッキ100"
+  },
+  {
+    "era": "S",
+    "name": "ニンフィア",
+    "number": "237/S-P",
+    "set": "S-P PROMO"
+  },
+  {
+    "era": "S",
     "name": "ニンフィア",
     "number": "035/071",
-    "set": "Pokémon GO",
-    "image": "https://www.pokemon-card.com/assets/images/card_images/large/S10b/041716_P_NINFUIA.jpg"
+    "set": "S10b Pokémon GO"
   },
   {
     "era": "SV",
     "name": "ニンフィア",
     "number": "070/SV-P",
-    "set": "YU NAGABA",
-    "image": "https://www.pokemon-card.com/assets/images/card_images/large/SV-P/043699_P_NINFUIA.jpg"
+    "set": "YU NAGABA PROMO"
+  },
+  {
+    "era": "SV",
+    "name": "ニンフィア",
+    "number": "022/064",
+    "set": "SV6a ナイトワンダラー"
+  },
+  {
+    "era": "SV",
+    "name": "ニンフィア",
+    "number": "068/187",
+    "set": "SV8a テラスタルフェスex"
   },
   {
     "era": "SV",
     "name": "ニンフィアex",
     "number": "069/187",
-    "set": "SV8a"
+    "set": "SV8a テラスタルフェスex"
   },
   {
     "era": "SV",
@@ -131,6 +231,12 @@
     "era": "SV",
     "name": "ニンフィアex",
     "number": "005/022",
-    "set": "Starter Set"
+    "set": "SVLN スターターセット"
+  },
+  {
+    "era": "SV",
+    "name": "ニンフィア",
+    "number": "050/175",
+    "set": "SVM Generations"
   }
 ]
