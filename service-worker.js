@@ -1,0 +1,1 @@
+const C='sylveon-v1';const F=['./','index.html','style.css','app.js','cards.json','manifest.json'];self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(x=>x.addAll(F))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));
