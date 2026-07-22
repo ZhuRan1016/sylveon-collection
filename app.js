@@ -1,148 +1,43 @@
+let cards=[],era='全部';
+const owned=new Set(JSON.parse(localStorage.getItem('sylveon-owned')||'[]'));
+const cache=JSON.parse(localStorage.getItem('sylveon-image-cache')||'{}');
+const key=c=>`${c.name}|${c.number}|${c.set}`;
+const save=()=>localStorage.setItem('sylveon-owned',JSON.stringify([...owned]));
+const num=s=>String(s||'').split('/')[0].replace(/^0+/,'').toUpperCase();
 
-const STORAGE_KEY='syldb-owned-v2';
-const OLD_KEYS=['syldb-owned-v1','sylveon-owned-v3','sylveon-owned'];
-let db=null,cards=[],activeEra='全部',selectedCard=null;
-const owned=new Set(JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]'));
-
-const $=s=>document.querySelector(s);
-const save=()=>localStorage.setItem(STORAGE_KEY,JSON.stringify([...owned]));
-const isOwned=c=>owned.has(c.id);
-
-async function init(){
-  db=await fetch('master.json',{cache:'no-store'}).then(r=>r.json());
-  cards=db.cards||[];
-  populateFilters();
-  bindEvents();
-  render();
-  if('serviceWorker' in navigator) navigator.serviceWorker.register('service-worker.js');
-}
-
-function populateFilters(){
-  const rarities=[...new Set(cards.map(c=>c.rarity).filter(Boolean))].sort();
-  $('#rarityFilter').innerHTML='<option value="all">全部稀有度</option>'+rarities.map(r=>`<option value="${esc(r)}">${esc(r)}</option>`).join('');
-}
-
-function filteredCards(){
-  const q=$('#searchInput').value.trim().toLowerCase();
-  const status=$('#statusFilter').value;
-  const rarity=$('#rarityFilter').value;
-  return cards.filter(c=>{
-    const hay=`${c.name_ja} ${c.card_number} ${c.set_name} ${c.variant} ${c.rarity}`.toLowerCase();
-    return (!q||hay.includes(q))
-      &&(activeEra==='全部'||c.era===activeEra)
-      &&(status==='all'||(status==='owned'&&isOwned(c))||(status==='missing'&&!isOwned(c)))
-      &&(rarity==='all'||c.rarity===rarity);
-  });
-}
-
-function render(){
-  renderTabs();renderStats();renderCards();renderSummary();
-}
-
-function renderTabs(){
-  const eras=['全部',...new Set(cards.map(c=>c.era))];
-  $('#eraTabs').innerHTML=eras.map(e=>`<button class="era-tab ${e===activeEra?'active':''}" data-era="${esc(e)}">${esc(e)}</button>`).join('');
-  document.querySelectorAll('.era-tab').forEach(b=>b.onclick=()=>{activeEra=b.dataset.era;render()});
-}
-
-function renderStats(){
-  const eras=[...new Set(cards.map(c=>c.era))];
-  $('#eraStats').innerHTML=eras.map(e=>{
-    const total=cards.filter(c=>c.era===e).length;
-    const n=cards.filter(c=>c.era===e&&isOwned(c)).length;
-    return `<div class="stat-box"><b>${e} ${n}/${total}</b><span>${total?Math.round(n/total*100):0}%</span></div>`;
-  }).join('');
-}
-
-function renderCards(){
-  const arr=filteredCards();
-  $('#emptyState').hidden=arr.length>0;
-  $('#cardGrid').innerHTML=arr.map(c=>`
-    <article class="card ${isOwned(c)?'owned':''}" data-id="${c.id}">
-      <div class="card-visual">
-        ${c.image_url?`<img loading="lazy" src="${esc(c.image_url)}" alt="${esc(c.name_ja)}" onerror="this.remove()">`:''}
-        <div class="card-placeholder">🎀<small>${esc(c.card_number)}</small></div>
-        <span class="era-badge">${esc(c.era)}</span>
-        <button class="owned-toggle" data-toggle="${c.id}">${isOwned(c)?'✓':'＋'}</button>
-      </div>
-      <div class="card-body">
-        <div class="card-name">${esc(c.name_ja)}</div>
-        <div class="card-number">${esc(c.card_number)}</div>
-        <div class="card-meta">${esc(c.set_name)}<br>${esc(c.rarity||'—')} · ${esc(c.variant||'普通版')}</div>
-      </div>
-    </article>`).join('');
-  document.querySelectorAll('.owned-toggle').forEach(b=>b.onclick=e=>{e.stopPropagation();toggleOwned(b.dataset.toggle)});
-  document.querySelectorAll('.card').forEach(el=>el.onclick=()=>openDetail(el.dataset.id));
-}
-
-function renderSummary(){
-  const n=cards.filter(isOwned).length,total=cards.length,p=total?Math.round(n/total*100):0;
-  $('#summaryCount').textContent=`${n} / ${total}`;
-  $('#summaryPercent').textContent=`${p}%`;
-  $('#progressBar').style.width=`${p}%`;
-}
-
-function toggleOwned(id){
-  owned.has(id)?owned.delete(id):owned.add(id);save();render();
-  if(selectedCard&&selectedCard.id===id) updateModalOwned();
-}
-
-function openDetail(id){
-  selectedCard=cards.find(c=>c.id===id);if(!selectedCard)return;
-  $('#modalVisual').innerHTML=selectedCard.image_url?`<img src="${esc(selectedCard.image_url)}" alt="${esc(selectedCard.name_ja)}">`:'🎀';
-  $('#modalName').textContent=selectedCard.name_ja;
-  $('#modalNumber').textContent=selectedCard.card_number;
-  const meta=[
-    ['时代',selectedCard.era],['系列',selectedCard.set_name],['稀有度',selectedCard.rarity||'—'],
-    ['版本',selectedCard.variant||'普通版'],['数据库ID',selectedCard.id]
-  ];
-  $('#modalMeta').innerHTML=meta.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('');
-  const src=selectedCard.source_url||'';
-  $('#modalSource').hidden=!src;$('#modalSource').href=src;
-  updateModalOwned();$('#detailModal').hidden=false;
-}
-
-function updateModalOwned(){
-  if(!selectedCard)return;
-  const has=isOwned(selectedCard);
-  $('#modalOwnedBtn').textContent=has?'✓ 已收集':'＋ 标记为已收集';
-  $('#modalOwnedBtn').classList.toggle('is-owned',has);
-}
-
-function bindEvents(){
-  $('#searchInput').oninput=render;$('#statusFilter').onchange=render;$('#rarityFilter').onchange=render;
-  $('#menuBtn').onclick=()=>$('#menuSheet').hidden=false;$('#closeMenuBtn').onclick=()=>$('#menuSheet').hidden=true;
-  $('#menuSheet').onclick=e=>{if(e.target.id==='menuSheet')$('#menuSheet').hidden=true};
-  $('#closeModalBtn').onclick=()=>$('#detailModal').hidden=true;
-  $('#detailModal').onclick=e=>{if(e.target.id==='detailModal')$('#detailModal').hidden=true};
-  $('#modalOwnedBtn').onclick=()=>toggleOwned(selectedCard.id);
-  $('#exportBtn').onclick=exportBackup;$('#importFile').onchange=importBackup;$('#migrateBtn').onclick=migrateOld;
-  $('#resetBtn').onclick=()=>{if(confirm('确定清空全部收藏状态吗？')){owned.clear();save();render();$('#menuSheet').hidden=true}};
-}
-
-function exportBackup(){
-  const payload={app:'SYLDB',version:2,exported_at:new Date().toISOString(),owned_ids:[...owned]};
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));
-  a.download='SYLDB-collection-backup.json';a.click();URL.revokeObjectURL(a.href);
-}
-
-async function importBackup(e){
-  const f=e.target.files[0];if(!f)return;
-  try{const d=JSON.parse(await f.text());const ids=d.owned_ids||d.owned||[];owned.clear();ids.forEach(id=>owned.add(id));save();render();alert('导入成功');$('#menuSheet').hidden=true}
-  catch{alert('备份文件格式不正确')}
-}
-
-function migrateOld(){
-  let migrated=0;
-  for(const k of OLD_KEYS){
-    const raw=JSON.parse(localStorage.getItem(k)||'[]');
-    for(const old of raw){
-      const match=cards.find(c=>old===c.id||old.includes(c.card_number));
-      if(match&&!owned.has(match.id)){owned.add(match.id);migrated++}
-    }
+async function loadImages(){
+ const status=document.querySelector('#imageStatus');
+ status.textContent='正在加载卡图…';
+ try{
+  let all=[];
+  for(const name of ['ニンフィア','サーナイト＆ニンフィアGX']){
+   const r=await fetch(`https://api.tcgdex.net/v2/ja/cards?name=${encodeURIComponent(name)}&pagination:itemsPerPage=100`);
+   if(r.ok){const d=await r.json();all.push(...(Array.isArray(d)?d:(d.data||[])))}
   }
-  save();render();alert(`已迁移 ${migrated} 项旧记录`);
+  all=[...new Map(all.map(x=>[x.id,x])).values()];
+  for(const c of cards){
+   const k=key(c);
+   if(cache[k]){c.image=cache[k];continue}
+   const m=all.find(x=>String(x.name||'').includes('ニンフィア')&&num(x.localId)===num(c.number));
+   if(m&&m.image){c.image=`${m.image}/high.webp`;cache[k]=c.image}
+  }
+  localStorage.setItem('sylveon-image-cache',JSON.stringify(cache));
+  status.textContent='卡图加载完成';render();
+ }catch(e){status.textContent='卡图加载失败，请刷新重试'}
 }
-
-function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-init();
+async function init(){cards=await fetch('cards.json',{cache:'no-store'}).then(r=>r.json());cards.forEach(c=>{if(cache[key(c)])c.image=cache[key(c)]});render();loadImages()}
+function render(){
+ const q=document.querySelector('#q').value.toLowerCase(),f=document.querySelector('#filter').value;
+ const eras=['全部',...new Set(cards.map(c=>c.era))];
+ document.querySelector('#eras').innerHTML=eras.map(e=>`<button class="era ${e===era?'active':''}" data-e="${e}">${e}</button>`).join('');
+ document.querySelectorAll('.era').forEach(b=>b.onclick=()=>{era=b.dataset.e;render()});
+ const arr=cards.filter(c=>{const has=owned.has(key(c));return(!q||`${c.name} ${c.number} ${c.set}`.toLowerCase().includes(q))&&(era==='全部'||c.era===era)&&(f==='all'||(f==='owned'&&has)||(f==='missing'&&!has))});
+ document.querySelector('#grid').innerHTML=arr.map(c=>{const has=owned.has(key(c));return `<article class="card ${has?'owned':''}"><div class="img">${c.image?`<img loading="lazy" src="${c.image}" alt="${c.name}">`:''}<div class="placeholder">🎀<br>${c.name}<br><small>${c.number}</small></div><button class="check" data-k="${encodeURIComponent(key(c))}">${has?'✓':'＋'}</button></div><div class="body"><b>${c.name}</b><div class="meta">${c.number}<br>${c.set}</div></div></article>`}).join('');
+ document.querySelectorAll('.check').forEach(b=>b.onclick=()=>{const k=decodeURIComponent(b.dataset.k);owned.has(k)?owned.delete(k):owned.add(k);save();render()});
+ const n=cards.filter(c=>owned.has(key(c))).length,p=cards.length?Math.round(n/cards.length*100):0;
+ document.querySelector('#stats').textContent=`已收集 ${n} / ${cards.length}（${p}%）`;document.querySelector('#bar').style.width=p+'%';
+}
+document.querySelector('#q').oninput=render;document.querySelector('#filter').onchange=render;
+document.querySelector('#exportBtn').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({owned:[...owned]},null,2)],{type:'application/json'}));a.download='sylveon-backup.json';a.click()};
+document.querySelector('#importFile').onchange=async e=>{const d=JSON.parse(await e.target.files[0].text());owned.clear();(d.owned||[]).forEach(x=>owned.add(x));save();render()};
+if('serviceWorker'in navigator)navigator.serviceWorker.register('service-worker.js');init();
