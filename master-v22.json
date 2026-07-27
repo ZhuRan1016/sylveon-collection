@@ -1,6 +1,6 @@
 {
   "database_name": "SYLDB",
-  "version": "2.1-image-batch-1",
+  "version": "2.2-image-batch-3",
   "generated_at": "2026-07-22T01:58:31",
   "scope": "Japanese physical Pokémon TCG cards with Sylveon in the card name, including Gardevoir & Sylveon GX; distinct official card numbers and collectible finishes; excluding 1st Edition/unlimited print-run splits.",
   "total_items": 43,
@@ -146,7 +146,7 @@
       "source_url": "",
       "owned": false,
       "notes": "",
-      "image_url": "",
+      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM1p/033269_P_NINFIAGX.jpg",
       "release_date": ""
     },
     {
@@ -200,7 +200,7 @@
       "source_url": "",
       "owned": false,
       "notes": "",
-      "image_url": "",
+      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM4p/034301_P_NINFIAGX.jpg",
       "release_date": ""
     },
     {
@@ -236,7 +236,7 @@
       "source_url": "",
       "owned": false,
       "notes": "",
-      "image_url": "",
+      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM8b/036127_P_NINFIAGX.jpg",
       "release_date": ""
     },
     {
@@ -254,7 +254,7 @@
       "source_url": "",
       "owned": false,
       "notes": "",
-      "image_url": "",
+      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM6/034735_P_NINFUIA.jpg",
       "release_date": ""
     },
     {
@@ -272,7 +272,7 @@
       "source_url": "",
       "owned": false,
       "notes": "",
-      "image_url": "",
+      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM12/037128_P_NINFUIA.jpg",
       "release_date": ""
     },
     {
@@ -290,7 +290,7 @@
       "source_url": "https://www.pokemon-card.com/card-search/details.php/card/36176",
       "owned": false,
       "notes": "",
-      "image_url": "",
+      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM9a/036176_P_SANAITONINFIAGX.jpg",
       "release_date": ""
     },
     {
@@ -326,7 +326,7 @@
       "source_url": "https://www.pokemon-card.com/card-search/details.php/card/36317",
       "owned": false,
       "notes": "",
-      "image_url": "",
+      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM9a/036317_P_SANAITONINFIAGX.jpg",
       "release_date": ""
     },
     {
@@ -416,7 +416,7 @@
       "source_url": "",
       "owned": false,
       "notes": "",
-      "image_url": "",
+      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/S6a/039625_P_NINFIAVMAX.jpg",
       "release_date": ""
     },
     {
@@ -524,7 +524,7 @@
       "source_url": "",
       "owned": false,
       "notes": "",
-      "image_url": "",
+      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/S8b/041060_P_NINFUIAVMAX.jpg",
       "release_date": ""
     },
     {
@@ -578,7 +578,7 @@
       "source_url": "",
       "owned": false,
       "notes": "",
-      "image_url": "",
+      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/S-P/040148_P_NINFUIA.jpg",
       "release_date": ""
     },
     {
@@ -614,7 +614,7 @@
       "source_url": "",
       "owned": false,
       "notes": "",
-      "image_url": "",
+      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6a/045897_P_NINFUIA.jpg",
       "release_date": ""
     },
     {
