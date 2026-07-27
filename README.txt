@@ -1,18 +1,15 @@
-SYLDB Web V2.2 图片显示修正版
+SYLDB Web V2.3 完整补图版
 
-请把本文件夹中的全部文件上传到 GitHub 仓库根目录：
-- index.html
-- style-v22.css
-- app-v22.js
-- master-v22.json
-- manifest.json
-- service-worker-v22.js
-- README.txt
+上传本文件夹全部文件到 GitHub 仓库根目录，然后 Commit。
+打开：
+https://zhuran1016.github.io/sylveon-collection/?v=23
 
-本版使用全新文件名，绕过 Safari 旧缓存，并强制限制卡图尺寸。
-更新完成后直接打开：
-https://zhuran1016.github.io/sylveon-collection/?v=22
+特点：
+- 已核实的官方卡图直接显示
+- 其余卡图按卡号＋系列从日文 TCGdex 数据库自动匹配
+- 第一次联网解析后，图片地址和图片文件都会缓存
+- 收藏状态继续保留
+- 不再需要分批更新图片包
 
-第二批新增：040/051、031/055、061/055、041/069、232/184。
-
-第三批新增：073/114、238/150、061/094、064/095、237/S-P、022/064。
+注意：
+- 同一卡号的普通／精灵球／大师球版本暂时共用基础卡图，以版本文字区分。
