@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="style-v29.css?v=2901">
+<link rel="stylesheet" href="style-v30.css?v=3001">
 <title>仙子伊布日版收藏图鉴</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
   <div class="title-row">
     <div>
       <h1>🎀 仙子伊布日版收藏图鉴</h1>
-      <p>SYLDB v2.9 · 单层上传版</p>
+      <p>SYLDB v3.0 · 库存管理版</p>
     </div>
     <button id="menuBtn" class="icon-btn" aria-label="更多">⋯</button>
   </div>
@@ -67,15 +67,22 @@
   <div class="modal-panel">
     <button id="closeModalBtn" class="modal-close">×</button>
     <div id="modalVisual" class="modal-visual"></div>
+<a id="openOriginalBtn" class="open-original" target="_blank" rel="noopener">查看原图</a>
     <h2 id="modalName"></h2>
     <div id="modalNumber" class="modal-number"></div>
     <dl id="modalMeta"></dl>
-    <button id="modalOwnedBtn" class="owned-action"></button>
+    <div class="inventory-panel">
+<div class="inventory-title">当前库存</div>
+<div class="inventory-controls">
+<button id="minusStockBtn" class="stock-btn">−</button>
+<div id="modalStockCount" class="stock-count">0</div>
+<button id="plusStockBtn" class="stock-btn">＋</button>
+</div></div>
     <a id="modalSource" target="_blank" rel="noopener" hidden>查看资料来源</a>
   </div>
 </div>
 
 <footer>收藏记录保存在当前浏览器。换设备前请先导出备份。</footer>
-<script src="app-v29.js?v=2901"></script>
+<script src="app-v30.js?v=3001"></script>
 </body>
 </html>
