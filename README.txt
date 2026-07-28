@@ -1,14 +1,4 @@
-SYLDB Web V2.5 已核实图片版
-
-本次修正：
-- 删除无法公开核实的 015/030、030/030 两条 Half Deck 记录
-- 数据库由43项调整为41项
-- 新增固定图片：092/069、093/069、069/187
-- 保留原收藏记录的 localStorage 键，不会清空已有勾选
-
-上传本文件夹全部文件后打开：
-https://zhuran1016.github.io/sylveon-collection/?v=25
-
-仍待补图：
-- 064/051
-- 067/055
+SYLDB Web V2.7 四张缺图修正版
+修复：064/051、061/094、064/095、067/055
+上传全部文件后打开：
+https://zhuran1016.github.io/sylveon-collection/?v=27
