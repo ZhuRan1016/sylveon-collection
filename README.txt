@@ -1,4 +1,9 @@
-SYLDB Web V2.7 四张缺图修正版
-修复：064/051、061/094、064/095、067/055
-上传全部文件后打开：
-https://zhuran1016.github.io/sylveon-collection/?v=27
+SYLDB Web V2.8 最后一张本地图版
+
+修复：
+- 067/055 サーナイト＆ニンフィアGX HR
+- 图片已放入 images/SM/067-055-HR.jpg
+- 不再依赖外部图片链接
+
+上传全部文件和 images 文件夹后打开：
+https://zhuran1016.github.io/sylveon-collection/?v=28
